@@ -1,5 +1,6 @@
 package edu.lodz.pl.biu.backend.security;
 
+import edu.lodz.pl.biu.backend.Question;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -42,6 +43,9 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Question> questions;
 
     public User(String username, String email, String password) {
         this.username = username;
